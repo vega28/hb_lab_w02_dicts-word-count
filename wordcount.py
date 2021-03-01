@@ -1,3 +1,4 @@
+# Pseudocode
 # open file 
 # read in file by line
 # parse each line - for each line: split by spaces
@@ -6,14 +7,21 @@
 
 def count_words_dict(filename):
         the_file = open(filename)
+        word_counts = {}
         for line in the_file:
-            line = line.strip('\n')
-            words = line.split(' ')
-            print(line) ###
-            print(words)
-        # word_counts: {}
-        # for word in phrase:
-        #     word[letter] = letter_counts.get(letter, 0) + 1
-        # return word
+            # punctuation = ['.', ',', '!', '?', ':', ';', '/', '-', '_', '"', "'"]
+            punctuation = """.,!?:;/-_"'"""
+            line = line.strip('/n')
+            words = line.split(' ') # this is a list
+            for word in words: # word is the key 
+                word = word.lower()
+                word = word.strip(punctuation)
+                word_counts[word] = word_counts.get(word, 0) + 1
+        for word in word_counts:
+            print(word, word_counts[word])
+        print(punctuation)
+
+            
+        
 
 count_words_dict('test.txt')
